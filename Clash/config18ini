@@ -10,6 +10,8 @@
 ;增强国外GFW：支持
 
 ;设置规则标志位
+
+; 从上下网匹配的？
  
 ruleset=🎯 全球直连,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/direct.list
 ruleset=🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list
@@ -19,6 +21,12 @@ ruleset=🎯 全球直连,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/mast
 ruleset=🛑 全球拦截,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list
 ruleset=🛑 全球拦截,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list
 
+;google独立出来 是因为美国ip 才能用bard
+ruleset=🚀 Google,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/Google.list
+
+;openAi独立出来 因为 美国ip才能用
+ruleset=🚀 openAi,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/openAi.list
+
 ruleset=🚀 国外被墙,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list
 ruleset=🚀 国外被墙,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list
 ruleset=🚀 国外被墙,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
@@ -26,11 +34,7 @@ ruleset=🚀 国外被墙,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/mast
 ruleset=🚀 国外被墙,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/dev.list
 ruleset=🚀 国外被墙,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/Movie.list
 
-;google独立出来 是因为美国ip 才能用bard
-ruleset=🚀 Google,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/Google.list
 
-;openAi独立出来 因为 美国ip才能用
-ruleset=🚀 openAi,https://raw.githubusercontent.com/hutuyishi/hutu-tools/dev/Clash/Ruleset/openAi.list
 ruleset=🎯 全球直连,[]GEOIP,CN
  
 
@@ -42,15 +46,14 @@ ruleset=🐟 漏网之鱼,[]FINAL
 ;设置分组标志位
 custom_proxy_group=🚀 默认节点`select`.*
 
-;自定义的custom_proxy_group必须靠前，才能优先被匹配
+;自定义的custom_proxy_group必须靠前，才能优先被匹配? 似乎没效果
  
 custom_proxy_group=🛑 全球拦截`select`[]REJECT`[]DIRECT
+custom_proxy_group=🚀 国外被墙`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
+
+
 custom_proxy_group=🚀 Google`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
 custom_proxy_group=🚀 openAi`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
-
-
-
-custom_proxy_group=🚀 国外被墙`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
 custom_proxy_group=🎯 全球直连`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
 custom_proxy_group=🌐 外国ip`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
 custom_proxy_group=🐟 漏网之鱼`select`[]REJECT`[]DIRECT`[]🚀 默认组`[]🚀 默认节点`.*
